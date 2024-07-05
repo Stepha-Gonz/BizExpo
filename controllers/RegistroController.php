@@ -30,11 +30,18 @@ class RegistroController
             header('Location: /boleto?id=' . urlencode($registro->token));
             return;
         }
-
-        if (isset($registro) && $registro->paquete_id === "1") {
-            header('Location: /finalizar-registro/conferencias');
+        if ($registro->regalo_id !== '10' && $registro->paquete_id === "1") {
+            header('Location: /boleto?id=' . urlencode($registro->token));
             return;
         }
+        // if (isset($registro) && $registro->paquete_id === "1" && $registro->regalo_id !== 10) {
+        //     header('Location: /boleto?id=' . urlencode($registro->token));
+        //     return;
+        // }
+        // if ($registro->paquete_id === "1" && $registro->regalo_id === 10) {
+        //     header('Location: /finalizar-registro/conferencias');
+        //     return;
+        // }
         $router->render('registro/crear', [
             'titulo' => 'Finalizar Registro'
         ]);
@@ -133,7 +140,7 @@ class RegistroController
         $usuario_id = $_SESSION['id'];
         $registro = Registro::where('usuario_id', $usuario_id);
 
-        if (isset($registro) && $registro->paquete_id === '2') {
+        if (isset($registro) && ($registro->paquete_id === '2' || $registro->paquete_id === '3')) {
             header('Location: /boleto?id=' . urlencode($registro->token));
             return;
         }
@@ -141,8 +148,12 @@ class RegistroController
             header('Location: /');
             return;
         }
+        // Redireccionar a boleto virtual en caso de haber finalizado su registro
 
-
+        if ($registro->regalo_id !== '10' && $registro->paquete_id === "1") {
+            header('Location: /boleto?id=' . urlencode($registro->token));
+            return;
+        }
         $eventos = Evento::ordenar('hora_id', 'ASC');
         $eventos_formateados = [];
         foreach ($eventos as $evento) {

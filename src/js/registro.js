@@ -106,7 +106,6 @@
           title: "Oops...",
           text: "No se ha podido completar el registro, Revisa nuevamente cupos y vuelve a intentar",
         }).then(() => location.reload());
-        return;
       }
     }
   }
