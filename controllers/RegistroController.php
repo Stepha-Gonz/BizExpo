@@ -141,10 +141,7 @@ class RegistroController
             header('Location: /');
             return;
         }
-        if (isset($registro->regalo_id) && $registro->paquete_id === '1') {
-            header('Location: /boleto?id=' . urlencode($registro->token));
-            return;
-        }
+
 
         $eventos = Evento::ordenar('hora_id', 'ASC');
         $eventos_formateados = [];
