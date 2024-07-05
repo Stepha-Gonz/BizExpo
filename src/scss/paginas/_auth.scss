@@ -1,0 +1,18 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+.auth {
+  @include m.contenedor-sm;
+}
+
+.confirmar__boton {
+  display: block;
+  width: fit-content;
+  text-align: center;
+  margin: 0 auto;
+  @include m.boton(v.$rosa);
+}
+
+.auth__texto {
+  text-align: center;
+}

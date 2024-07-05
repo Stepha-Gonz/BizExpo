@@ -1,0 +1,96 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+.paquetes {
+  &__grid {
+    @include m.contenedor;
+    @include m.grid(1, 3rem);
+
+    @include m.tablet {
+      @include m.grid(3, 3rem);
+    }
+  }
+  &__formulario {
+    display: flex;
+    justify-content: center;
+  }
+  &__submit {
+    @include m.boton(v.$azul);
+    text-align: center;
+    width: auto;
+  }
+}
+
+//Tarjetas
+
+.paquete__card {
+  &:nth-child(2) {
+    order: -1;
+    @include m.tablet {
+      order: unset;
+    }
+  }
+  &:nth-child(1) {
+    order: 2;
+    @include m.tablet {
+      order: -1;
+    }
+  }
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  margin-bottom: 2rem;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 2rem;
+  background-color: rgba(17, 24, 39, 1);
+  padding: 2rem;
+}
+
+.paquete__header {
+  display: flex;
+  flex-direction: column;
+}
+
+.paquete__title {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.paquete__price {
+  font-size: 3.75rem;
+  line-height: 1;
+  font-weight: 700;
+  color: #fff;
+}
+
+.paquete__desc {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.625;
+  color: rgba(156, 163, 175, 1);
+}
+
+.paquete__lists {
+  margin-bottom: 1.5rem;
+  flex: 1 1 0%;
+  color: rgba(156, 163, 175, 1);
+}
+
+.paquete__lists .paquete__list {
+  margin-bottom: 0.5rem;
+  display: flex;
+  margin-left: 0.5rem;
+}
+
+.paquete__lists .paquete__list svg {
+  height: 1.5rem;
+  width: 1.5rem;
+  flex-shrink: 0;
+  margin-right: 0.5rem;
+  color: v.$azul;
+}
